@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{B30DEF68-AC6B-4A67-859D-BC5F9B6BA585}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitlab-ci.yml = .gitlab-ci.yml
+		CHANGELOG = CHANGELOG
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EC437F57-769B-4FC7-BE27-04875484AA1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{37455792-147E-4DC1-84EE-66B746017D5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vertr.Strategies.Server", "src\Vertr.Strategies.Server\Vertr.Strategies.Server.csproj", "{FB9209B8-178F-413E-954B-E3A3BDD504E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vertr.Strategies.Domain", "src\Vertr.Strategies.Domain\Vertr.Strategies.Domain.csproj", "{7DD6133B-AAE5-4C9A-9ADB-C98AA9AB7A02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vertr.Strategies.Application", "src\Vertr.Strategies.Application\Vertr.Strategies.Application.csproj", "{9691E177-E467-492B-BAAB-8E70F7F6E962}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB9209B8-178F-413E-954B-E3A3BDD504E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB9209B8-178F-413E-954B-E3A3BDD504E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB9209B8-178F-413E-954B-E3A3BDD504E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB9209B8-178F-413E-954B-E3A3BDD504E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DD6133B-AAE5-4C9A-9ADB-C98AA9AB7A02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DD6133B-AAE5-4C9A-9ADB-C98AA9AB7A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DD6133B-AAE5-4C9A-9ADB-C98AA9AB7A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DD6133B-AAE5-4C9A-9ADB-C98AA9AB7A02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9691E177-E467-492B-BAAB-8E70F7F6E962}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9691E177-E467-492B-BAAB-8E70F7F6E962}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9691E177-E467-492B-BAAB-8E70F7F6E962}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9691E177-E467-492B-BAAB-8E70F7F6E962}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FB9209B8-178F-413E-954B-E3A3BDD504E2} = {EC437F57-769B-4FC7-BE27-04875484AA1E}
+		{7DD6133B-AAE5-4C9A-9ADB-C98AA9AB7A02} = {EC437F57-769B-4FC7-BE27-04875484AA1E}
+		{9691E177-E467-492B-BAAB-8E70F7F6E962} = {EC437F57-769B-4FC7-BE27-04875484AA1E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2E901C8-8018-4B43-8B8E-A40CA710BE95}
+	EndGlobalSection
+EndGlobal
