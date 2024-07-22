@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MediatR.RequestAuthorization" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vertr.Strategies.Domain\Vertr.Strategies.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,6 @@
 
 using Vertr.Infrastructure.Kafka;
+using Vertr.Strategies.Domain.Abstractions;
 using Vertr.Strategies.Domain.Services;
 using Vertr.Strategies.Server.BackgroundServices;
 
@@ -11,8 +12,8 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddSingleton<SignalsQueue>();
-        builder.Services.AddHostedService<TradeSignalPublisher>();
+        builder.Services.AddSingleton<ITradeSignalsQueue, TradeSignalsInMemoryQueue>();
+        builder.Services.AddHostedService<TradeSignalsPublisher>();
 
         builder.Services.AddOptions<KafkaSettings>().BindConfiguration("KafkaSettings");
         builder.Services.AddKafkaSettings(settings => builder.Configuration.Bind("KafkaSettings", settings));

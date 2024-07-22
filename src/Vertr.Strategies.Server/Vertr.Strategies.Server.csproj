@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Vertr.Strategies.Application\Vertr.Strategies.Application.csproj" />
     <ProjectReference Include="..\Vertr.Strategies.Domain\Vertr.Strategies.Domain.csproj" />
   </ItemGroup>
 

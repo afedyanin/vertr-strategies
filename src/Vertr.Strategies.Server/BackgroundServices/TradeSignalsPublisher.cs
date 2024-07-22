@@ -3,22 +3,22 @@ using Microsoft.Extensions.Options;
 using Vertr.Infrastructure.Kafka;
 using Vertr.Infrastructure.Kafka.Abstractions;
 using Vertr.Strategies.Domain;
-using Vertr.Strategies.Domain.Services;
+using Vertr.Strategies.Domain.Abstractions;
 
 namespace Vertr.Strategies.Server.BackgroundServices;
 
-public class TradeSignalPublisher : BackgroundService
+public class TradeSignalsPublisher : BackgroundService
 {
     public static readonly string TradeSignalTopicKey = "TradeSignals";
 
     private readonly IServiceProvider _services;
-    private readonly ILogger<TradeSignalPublisher> _logger;
+    private readonly ILogger<TradeSignalsPublisher> _logger;
     private readonly string _tradeSignalsTopic;
 
-    public TradeSignalPublisher(
+    public TradeSignalsPublisher(
         IServiceProvider services,
         IOptions<KafkaSettings> kafkaSettings,
-        ILogger<TradeSignalPublisher> logger
+        ILogger<TradeSignalsPublisher> logger
         )
     {
         _services = services;
@@ -30,16 +30,17 @@ public class TradeSignalPublisher : BackgroundService
         _tradeSignalsTopic = tradeSignalsTopic ?? throw new ArgumentException("Order trades topic is not defined.");
 
     }
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         _logger.LogInformation("Start publishing trading signals.");
 
-        var signalsProvider = _services.GetRequiredService<SignalsQueue>();
+        var signalsProvider = _services.GetRequiredService<ITradeSignalsQueue>();
         var kafkaProducer = _services.GetRequiredService<IProducerWrapper<string, TradeSignal>>();
 
         while (stoppingToken.IsCancellationRequested)
         {
-            while (signalsProvider.TryDequeue(out var signal))
+            while (signalsProvider.TryGet(out var signal))
             {
                 if (signal == null)
                 {
@@ -58,5 +59,4 @@ public class TradeSignalPublisher : BackgroundService
         _logger.LogWarning("Trading signals publishing is stopping.");
         await base.StopAsync(stoppingToken);
     }
-
 }
