@@ -1,62 +1,15 @@
-# 2024-07-21
+# 2024-07-22
 
-project started
+- poc completed
 
 ToDo
+- persistence
+- durable strategies
+- merket data (redis) connector
 
-1) TradingSignalPublisher (Background Service)
-Читает из IStrategyEventsQueue события и обрабатывает их (через вызов медиатора)
-Стратегии публикуют события IStrategyEventsQueue
-- Trade Signal
-- Error
+# 2024-07-21
 
-Сервис
-- сохраняет сигнал/событие в БД
-- сигнал публикует в Кафку
-
-2) ITradingStrategy интерфейс и базовый класс (Entity)
-Props
-- Id
-- Name
-- Type (ключ для фэктори)
-- PortfolioId
-- Params (Key/Value)
-- IsActive (calculated)
-- (?)IsDurable - автоматич. стартует после старта сервера
-
-Публикует евенты в IStrategyEventsQueue
-- Error
-- Signal
-
-
-3) API контроллер
-Публикует Commands в IStrategyCommandsQueue
-- Create + Start
-- Stop
-- GetStatus/GetProgress?
-
-
-3) StrategyLifecycleService
-- Хостит словарь тасков
-- Слушает команды в IStrategyCommandsQueue
-- Вызывает Mediator для сохранения команд в БД
-- Управляет словарем таксов по командам
-
-Create + Start - вызывает StrategyFactory.Create() и вызывает на ней Start. Сохраняет событие старта в БД
-Таску сохраняет в словарь активных стратегий (IActiveStrategyManager) - список доступен через API контроллера
-Stop - вызывает Stop в стратегии, сохраняет событие в БД, вычищает инстанс из словаря.
-GetStatus - вызывает GetStatus в стратегии?
-
-Словарь хранит объекты стратегий. Стратегия хранит свою таску внутри себя.
-Методы Start и Stop стратегии возвращают резалты для сохранения в виде евентов в БД
-
-API контроллер чекает StrategyType вызывая статик метод на StrategyFactory.IsValidType(strateguType)
-
-4) Durable strategy
-При создании сохраняются в отдельную таблицу
-При страте вычитываются из таблицы - и стартуют при как новые инстансы но с тем же StrategyID
-Нужно ли загружать параметры, сохраненные при последнем старте? - методы Load/Save State
-Инжектить отдельный IStrategyStateProvider?
+- project started
 
 
 
