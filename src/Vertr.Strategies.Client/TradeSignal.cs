@@ -1,4 +1,4 @@
-namespace Vertr.Strategies.Domain;
+namespace Vertr.Strategies.Client;
 public record class TradeSignal(
     Guid Id,
     Guid StrategyId,

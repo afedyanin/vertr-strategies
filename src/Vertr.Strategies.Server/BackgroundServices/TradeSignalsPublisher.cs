@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Options;
 using Vertr.Infrastructure.Kafka;
 using Vertr.Infrastructure.Kafka.Abstractions;
-using Vertr.Strategies.Domain;
+using Vertr.Strategies.Client;
 using Vertr.Strategies.Domain.Abstractions;
 
 namespace Vertr.Strategies.Server.BackgroundServices;

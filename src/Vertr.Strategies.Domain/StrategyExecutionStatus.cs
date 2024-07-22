@@ -1,3 +1,4 @@
+using Vertr.Strategies.Client;
 using Vertr.Strategies.Domain.Abstractions;
 
 namespace Vertr.Strategies.Domain;

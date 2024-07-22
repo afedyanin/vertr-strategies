@@ -1,5 +1,6 @@
 
 using System.Collections.Concurrent;
+using Vertr.Strategies.Client;
 using Vertr.Strategies.Domain.Abstractions;
 
 namespace Vertr.Strategies.Domain.Services;

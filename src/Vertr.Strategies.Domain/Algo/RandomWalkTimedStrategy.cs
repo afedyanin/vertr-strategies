@@ -1,6 +1,7 @@
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Vertr.Strategies.Client;
 using Vertr.Strategies.Domain.Abstractions;
 
 namespace Vertr.Strategies.Domain.Algo;

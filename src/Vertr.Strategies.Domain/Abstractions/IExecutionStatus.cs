@@ -1,3 +1,5 @@
+using Vertr.Strategies.Client;
+
 namespace Vertr.Strategies.Domain.Abstractions;
 public interface IExecutionStatus
 {
