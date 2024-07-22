@@ -1,18 +1,18 @@
+using System.Collections.ObjectModel;
+
 namespace Vertr.Strategies.Domain.Abstractions;
 
 public interface IStrategy
 {
-    public Guid Id { get; }
+    Guid Id { get; }
 
-    public Guid PortfolioId { get; }
+    Guid PortfolioId { get; }
 
-    public string Type { get; }
+    string Name { get; }
 
-    public string Name { get; }
+    ReadOnlyDictionary<string, string> Parameters { get; }
 
-    public IDictionary<string, string> Parameters { get; }
+    Task StartAsync(CancellationToken cancellationToken = default);
 
-    public Task StartAsync(CancellationToken cancellationToken = default);
-
-    public Task StopAsync();
+    Task StopAsync(CancellationToken cancellationToken = default);
 }
