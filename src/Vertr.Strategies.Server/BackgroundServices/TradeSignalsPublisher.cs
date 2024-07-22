@@ -36,7 +36,7 @@ public class TradeSignalsPublisher : BackgroundService
         _logger.LogInformation("Start publishing trading signals.");
 
         var signalsProvider = _services.GetRequiredService<ITradeSignalsQueue>();
-        var kafkaProducer = _services.GetRequiredService<IProducerWrapper<string, TradeSignal>>();
+        // var kafkaProducer = _services.GetRequiredService<IProducerWrapper<string, TradeSignal>>();
 
         while (stoppingToken.IsCancellationRequested)
         {
@@ -47,7 +47,7 @@ public class TradeSignalsPublisher : BackgroundService
                     break;
                 }
                 _logger.LogDebug($"Publishing signal={signal}");
-                await kafkaProducer.Produce(_tradeSignalsTopic, signal.PortfolioId.ToString(), signal, null, stoppingToken);
+                // await kafkaProducer.Produce(_tradeSignalsTopic, signal.PortfolioId.ToString(), signal, null, stoppingToken);
             }
 
             await Task.Delay(10);

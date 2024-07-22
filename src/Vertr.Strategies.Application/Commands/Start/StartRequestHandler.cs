@@ -40,6 +40,7 @@ internal sealed class StartRequestHandler : IRequestHandler<StartRequest, StartR
         // always ok: new guid as key
         _strategiesRepository.TryAdd(strategy);
 
+        // await is just formal
         await strategy.StartAsync();
 
         return response;

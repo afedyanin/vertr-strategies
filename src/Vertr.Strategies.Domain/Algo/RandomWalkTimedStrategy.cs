@@ -16,7 +16,7 @@ public class RandomWalkTimedStrategy : StrategyBase
     private static readonly int _qtyLots = 1;
     private static readonly string _classCode = "TQBR";
     private static readonly string _symbol = "SBER";
-    private static readonly int _delayMs = 1_000;
+    private static readonly int _delayMs = 5_000;
 
     public RandomWalkTimedStrategy(
         Guid id,
@@ -40,6 +40,8 @@ public class RandomWalkTimedStrategy : StrategyBase
                 ExecutionStatus.AddSignal(signal);
                 _signalsQueue.Put(signal);
 
+                _logger.LogInformation($"{nameof(RandomWalkTimedStrategy)} id={Id} signal={signal}");
+
                 await Task.Delay(_delayMs, stoppingToken);
             }
         }
@@ -57,6 +59,6 @@ public class RandomWalkTimedStrategy : StrategyBase
         var qty = _qtyLots * sign;
 
         // market price
-        return new TradeSignal(Guid.NewGuid(), Id, PortfolioId, _classCode, _symbol, qty, 0, DateTime.UtcNow);
+        return new TradeSignal(Guid.NewGuid(), Id, PortfolioId, _classCode, _symbol, 0, qty, DateTime.UtcNow);
     }
 }
