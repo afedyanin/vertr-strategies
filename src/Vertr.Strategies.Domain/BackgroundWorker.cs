@@ -13,7 +13,6 @@ public abstract class BackgroundWorker : IDisposable
     public virtual Task StartAsync(CancellationToken cancellationToken = default)
     {
         _stoppingCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-
         _executeTask = ExecuteAsync(_stoppingCts.Token);
 
         if (_executeTask.IsCompleted)

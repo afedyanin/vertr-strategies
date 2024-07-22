@@ -2,7 +2,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using Vertr.Strategies.Domain.Abstractions;
 
-namespace Vertr.Strategies.Application.StrategyLifecycleCommands.Stop;
+namespace Vertr.Strategies.Application.Commands.Stop;
 internal sealed class StopRequestHandler : IRequestHandler<StopRequest, StopResponse>
 {
     private readonly IStrategiesRepository _strategiesRepository;

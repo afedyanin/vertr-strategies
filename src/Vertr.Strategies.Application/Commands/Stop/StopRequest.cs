@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Vertr.Strategies.Application.StrategyLifecycleCommands.Stop;
+namespace Vertr.Strategies.Application.Commands.Stop;
 public record class StopRequest(Guid StrategyId) : IRequest<StopResponse>
 {
 }

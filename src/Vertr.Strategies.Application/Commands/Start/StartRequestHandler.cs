@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using Vertr.Strategies.Domain;
 using Vertr.Strategies.Domain.Abstractions;
 
-namespace Vertr.Strategies.Application.StrategyLifecycleCommands.Start;
+namespace Vertr.Strategies.Application.Commands.Start;
 internal sealed class StartRequestHandler : IRequestHandler<StartRequest, StartResponse>
 {
     private readonly StrategyFactory _strategyFactory;

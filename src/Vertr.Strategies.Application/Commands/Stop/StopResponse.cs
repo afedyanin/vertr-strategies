@@ -1,6 +1,6 @@
 using Vertr.Strategies.Domain.Abstractions;
 
-namespace Vertr.Strategies.Application.StrategyLifecycleCommands.Stop;
+namespace Vertr.Strategies.Application.Commands.Stop;
 public record class StopResponse(IStrategy? Strategy)
 {
 }

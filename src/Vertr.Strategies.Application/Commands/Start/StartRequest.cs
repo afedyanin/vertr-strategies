@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Vertr.Strategies.Application.StrategyLifecycleCommands.Start;
+namespace Vertr.Strategies.Application.Commands.Start;
 public record class StartRequest(
     Guid PortfolioId,
     string StrategyType,

@@ -41,7 +41,22 @@ public class Tests
         Assert.Pass();
     }
 
+    [Test]
+    public async Task CanStopAndStartAgain()
+    {
+        var worker = new WorkerStub();
 
+        await worker.StartAsync();
+        await Task.Delay(2_000);
+        await worker.StopAsync();
+
+        await Task.Delay(2_000);
+        await worker.StartAsync();
+
+        await worker.StopAsync();
+
+        Assert.Pass();
+    }
 
     private sealed class WorkerStub : BackgroundWorker
     {
