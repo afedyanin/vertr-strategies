@@ -5,6 +5,6 @@ public record class StartRequest(
     Guid PortfolioId,
     string StrategyType,
     string StrategyName,
-    IDictionary<string, string> parameters) : IRequest<StartResponse>
+    IDictionary<string, string> Parameters) : IRequest<StartResponse>
 {
 }

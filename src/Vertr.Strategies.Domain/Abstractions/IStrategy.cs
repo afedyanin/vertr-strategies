@@ -10,6 +10,8 @@ public interface IStrategy
 
     string Name { get; }
 
+    IExecutionStatus Status { get; }
+
     ReadOnlyDictionary<string, string> Parameters { get; }
 
     Task StartAsync(CancellationToken cancellationToken = default);

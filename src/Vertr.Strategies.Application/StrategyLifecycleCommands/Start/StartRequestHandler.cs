@@ -1,14 +1,47 @@
 using MediatR;
+using Microsoft.Extensions.Logging;
+using Vertr.Strategies.Domain;
+using Vertr.Strategies.Domain.Abstractions;
 
 namespace Vertr.Strategies.Application.StrategyLifecycleCommands.Start;
 internal sealed class StartRequestHandler : IRequestHandler<StartRequest, StartResponse>
 {
-    public Task<StartResponse> Handle(StartRequest request, CancellationToken cancellationToken)
+    private readonly StrategyFactory _strategyFactory;
+    private readonly IStrategiesRepository _strategiesRepository;
+    private readonly ILogger<StartRequestHandler> _logger;
+
+    public StartRequestHandler(
+        StrategyFactory strategyFactory,
+        IStrategiesRepository strategiesRepository,
+        ILogger<StartRequestHandler> logger)
     {
-        // 1. Create strategy from factory
-        // 2. Save into active strategy repo
-        // 3. Start strategy
-        // 4. Return strategy
-        throw new NotImplementedException();
+        _strategyFactory = strategyFactory;
+        _strategiesRepository = strategiesRepository;
+        _logger = logger;
+    }
+
+    public async Task<StartResponse> Handle(StartRequest request, CancellationToken cancellationToken)
+    {
+        var strategy = _strategyFactory.Create(
+            Guid.NewGuid(),
+            request.PortfolioId,
+            request.StrategyType,
+            request.StrategyName,
+            request.Parameters);
+
+        var response = new StartResponse(strategy);
+
+        if (strategy == null)
+        {
+            _logger.LogError($"Cannot create strategy. Type={request.StrategyType}");
+            return response;
+        }
+
+        // always ok: new guid as key
+        _strategiesRepository.TryAdd(strategy);
+
+        await strategy.StartAsync();
+
+        return response;
     }
 }

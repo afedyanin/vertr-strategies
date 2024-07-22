@@ -1,8 +1,6 @@
 namespace Vertr.Strategies.Domain;
 
-/// <summary>
-/// see https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting.Abstractions/src/BackgroundService.cs
-/// </summary>
+// https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting.Abstractions/src/BackgroundService.cs
 public abstract class BackgroundWorker : IDisposable
 {
     private Task? _executeTask;
@@ -12,7 +10,7 @@ public abstract class BackgroundWorker : IDisposable
 
     protected abstract Task ExecuteAsync(CancellationToken stoppingToken);
 
-    public virtual Task StartAsync(CancellationToken cancellationToken)
+    public virtual Task StartAsync(CancellationToken cancellationToken = default)
     {
         _stoppingCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
 
@@ -26,7 +24,7 @@ public abstract class BackgroundWorker : IDisposable
         return Task.CompletedTask;
     }
 
-    public virtual async Task StopAsync(CancellationToken cancellationToken)
+    public virtual async Task StopAsync(CancellationToken cancellationToken = default)
     {
         if (_executeTask == null)
         {

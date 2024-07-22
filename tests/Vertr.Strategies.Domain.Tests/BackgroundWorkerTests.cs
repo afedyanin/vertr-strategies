@@ -8,20 +8,44 @@ public class Tests
     public async Task CanStartWorker()
     {
         var worker = new WorkerStub();
-        var cts = new CancellationTokenSource();
-
-        await worker.StartAsync(cts.Token);
-
+        await worker.StartAsync();
         await Task.Delay(9_000);
-
-        await worker.StopAsync(cts.Token);
+        await worker.StopAsync();
 
         Assert.Pass();
     }
 
+    [Test]
+    public async Task CanStartTwice()
+    {
+        var worker = new WorkerStub();
+        await worker.StartAsync();
+        await Task.Delay(2_000);
+        await worker.StartAsync();
+        await Task.Delay(2_000);
+        await worker.StopAsync();
+
+        Assert.Pass();
+    }
+
+    [Test]
+    public async Task CanStopTwice()
+    {
+        var worker = new WorkerStub();
+        await worker.StartAsync();
+        await Task.Delay(2_000);
+        await worker.StopAsync();
+        await Task.Delay(2_000);
+        await worker.StopAsync();
+
+        Assert.Pass();
+    }
+
+
+
     private sealed class WorkerStub : BackgroundWorker
     {
-        public override Task StartAsync(CancellationToken cancellationToken)
+        public override Task StartAsync(CancellationToken cancellationToken = default)
         {
             Console.WriteLine($"Execution started at: {DateTimeOffset.Now}");
             return base.StartAsync(cancellationToken);
@@ -42,7 +66,7 @@ public class Tests
             }
         }
 
-        public override Task StopAsync(CancellationToken cancellationToken)
+        public override Task StopAsync(CancellationToken cancellationToken = default)
         {
             Console.WriteLine($"Execution stopping at: {DateTimeOffset.Now}");
             return base.StopAsync(cancellationToken);
