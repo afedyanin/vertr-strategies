@@ -3,11 +3,11 @@ using System.Collections.Concurrent;
 
 namespace Vertr.Strategies.Domain.Services;
 
-public class TradeSignalProvider
+public class SignalsQueue
 {
     private readonly ConcurrentQueue<TradeSignal> _tradingSignalsQueue;
 
-    public TradeSignalProvider()
+    public SignalsQueue()
     {
         _tradingSignalsQueue = new ConcurrentQueue<TradeSignal>();
     }

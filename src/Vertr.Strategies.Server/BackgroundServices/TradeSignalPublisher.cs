@@ -7,18 +7,18 @@ using Vertr.Strategies.Domain.Services;
 
 namespace Vertr.Strategies.Server.BackgroundServices;
 
-public class TradingSignalsPublisher : BackgroundService
+public class TradeSignalPublisher : BackgroundService
 {
     public static readonly string TradeSignalTopicKey = "TradeSignals";
 
     private readonly IServiceProvider _services;
-    private readonly ILogger<TradingSignalsPublisher> _logger;
+    private readonly ILogger<TradeSignalPublisher> _logger;
     private readonly string _tradeSignalsTopic;
 
-    public TradingSignalsPublisher(
+    public TradeSignalPublisher(
         IServiceProvider services,
         IOptions<KafkaSettings> kafkaSettings,
-        ILogger<TradingSignalsPublisher> logger
+        ILogger<TradeSignalPublisher> logger
         )
     {
         _services = services;
@@ -34,7 +34,7 @@ public class TradingSignalsPublisher : BackgroundService
     {
         _logger.LogInformation("Start publishing trading signals.");
 
-        var signalsProvider = _services.GetRequiredService<TradeSignalProvider>();
+        var signalsProvider = _services.GetRequiredService<SignalsQueue>();
         var kafkaProducer = _services.GetRequiredService<IProducerWrapper<string, TradeSignal>>();
 
         while (stoppingToken.IsCancellationRequested)

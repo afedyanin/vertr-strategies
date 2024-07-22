@@ -11,8 +11,8 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddSingleton<TradeSignalProvider>();
-        builder.Services.AddHostedService<TradingSignalsPublisher>();
+        builder.Services.AddSingleton<SignalsQueue>();
+        builder.Services.AddHostedService<TradeSignalPublisher>();
 
         builder.Services.AddOptions<KafkaSettings>().BindConfiguration("KafkaSettings");
         builder.Services.AddKafkaSettings(settings => builder.Configuration.Bind("KafkaSettings", settings));
