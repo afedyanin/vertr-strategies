@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Vertr.Infrastructure.Kafka" Version="0.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vertr.Strategies.Domain\Vertr.Strategies.Domain.csproj" />
   </ItemGroup>
 
 </Project>

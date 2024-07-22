@@ -1,4 +1,8 @@
 
+using Vertr.Infrastructure.Kafka;
+using Vertr.Strategies.Domain.Services;
+using Vertr.Strategies.Server.BackgroundServices;
+
 namespace Vertr.Strategies.Server;
 
 public class Program
@@ -7,16 +11,18 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
+        builder.Services.AddSingleton<TradeSignalProvider>();
+        builder.Services.AddHostedService<TradingSignalsPublisher>();
+
+        builder.Services.AddOptions<KafkaSettings>().BindConfiguration("KafkaSettings");
+        builder.Services.AddKafkaSettings(settings => builder.Configuration.Bind("KafkaSettings", settings));
 
         builder.Services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
         var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
