@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-    <PackageReference Include="Vertr.Infrastructure.Kafka" Version="0.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.0" />
+    <PackageReference Include="Vertr.Infrastructure.Kafka" Version="0.0.2" />
   </ItemGroup>
 
   <ItemGroup>
