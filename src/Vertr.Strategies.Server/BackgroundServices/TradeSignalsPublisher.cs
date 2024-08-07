@@ -1,8 +1,8 @@
 
 using Microsoft.Extensions.Options;
 using Vertr.Infrastructure.Kafka;
-using Vertr.Infrastructure.Kafka.Abstractions;
-using Vertr.Strategies.Client;
+// using Vertr.Infrastructure.Kafka.Abstractions;
+// using Vertr.Strategies.Client;
 using Vertr.Strategies.Domain.Abstractions;
 
 namespace Vertr.Strategies.Server.BackgroundServices;
@@ -13,7 +13,7 @@ public class TradeSignalsPublisher : BackgroundService
 
     private readonly IServiceProvider _services;
     private readonly ILogger<TradeSignalsPublisher> _logger;
-    private readonly string _tradeSignalsTopic;
+    // private readonly string _tradeSignalsTopic;
 
     public TradeSignalsPublisher(
         IServiceProvider services,
@@ -24,10 +24,9 @@ public class TradeSignalsPublisher : BackgroundService
         _services = services;
         _logger = logger;
 
-        var topics = kafkaSettings.Value.Topics;
-
-        topics.TryGetValue(TradeSignalTopicKey, out var tradeSignalsTopic);
-        _tradeSignalsTopic = tradeSignalsTopic ?? throw new ArgumentException("Order trades topic is not defined.");
+        // var topics = kafkaSettings.Value.Topics;
+        // topics.TryGetValue(TradeSignalTopicKey, out var tradeSignalsTopic);
+        // _tradeSignalsTopic = tradeSignalsTopic ?? throw new ArgumentException("Order trades topic is not defined.");
 
     }
 
